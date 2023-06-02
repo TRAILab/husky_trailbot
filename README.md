@@ -1,7 +1,5 @@
-husky
+Husky
 =====
-
-:warning: **Upgrading to ROS2 may not have the same functionally as ROS**: Contact support at support@clearpathrobotics.com.
 
 Common ROS packages for the Clearpath Husky, useable for both simulation and
 real robot operation.
@@ -13,32 +11,92 @@ real robot operation.
 
 For Husky instructions and tutorials, please see [Robots/Husky](http://wiki.ros.org/Robots/Husky).
 
-To create a custom Husky description or simulation, please fork [husky_customization](https://github.com/husky/husky_customization).
 
-husky_desktop
+Dependencies/Requirement to build
+=============
+Install ROS2 Humble (follow guide below):
+  - https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html
+
+Install NAV2 and Correlating Dependencies:
+  - sudo apt install ros-humble-slam-toolbox
+  - sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup
+  - sudo apt-get install ros-humble-turtlebot3*
+  - sudo apt install ros-humble-twist-mux
+  - sudo apt install ros-humble-gazebo-ros2-control
+
+Clone
+```
+cd ~/ros2_ws/src
+git clone --recursive https://github.com/TRAILab/husky_trailbot.git
+cd ..
+
+```
+build
+```
+colcon build --symlink-install
+
+```
+source
+```
+. install/setup.bash
+
+```
+
+
+Launch and Use Husky
 =============
 
-Desktop ROS packages for the Clearpath Husky, which may pull in graphical dependencies.
+To run the needed launch file(s) to use the trailbot follow the steps below:
 
- - husky_viz : Visualization (rviz) configuration and bringup
+Making sure that the husky is turned input:
+```
+ros2 launch husky_base base.launch.py
+```
 
-For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
+This will now allow you to use the controller to move the husky as well as using navigation in RVIZ
 
-husky_robot
-===========
 
-Robot ROS packages for the Clearpath Husky, for operating robot hardware.
+Controller Information: 
+=============
+Teleop configuration for Logitech F710 Gamepad using the x-pad configuration.
+Left thumb-stick up/down for velocity, left/right for twist
+LB for enable
+RB for enable-turbo
 
- - husky_bringup : Bringup launch files and scripts.
- - husky_base : Hardware driver for communicating with the onboard MCU.
+        (LB)                                 (RB)
+        (LT)                                 (RT)
+      _=====_            D(  .)X            _=====_
+     / _____ \                             / _____ \
+   +.-'_____'-.---------------------------.-'_____'-.+
+  /   |     |  '.                       .'  |      |   \
+ / ___| /|\ |___ \ (back)(Lgtc)(strt)  / ___| (Y)  |___ \
+/ |      |      | ;  __           __  ; |              | |
+| | <---   ---> | | (__) .       (__) | | (X)       (B)| |
+| |___   |   ___| ; MODE         VIBE ; |___       ____| /
+|\    | \|/ |    /  _     ___      _   \    | (A) |    /|
+| \   |_____|  .','" "', |___|  ,'" "', '.  |_____|  .' |
+|  '-.______.-' /       \ANALOG/       \  '-._____.-'   |
+|               |  LJ   |------|   RJ  |                |
+|              /\       /      \       /\               |
+|             /  '.___.'        '.___.'  \              |
+|            /                            \             |
+ \          /                              \           /
+  \________/                                \_________/
 
-For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
+BUTTON         Value
+  LB             4
+  RB             5
+  A              0
+  B              1
+  X              2
+  Y              3
 
-husky_simulator
-==============
-
-Simulator ROS packages for the Clearpath Husky.
-
- - husky_gazebo : Gazebo plugin definitions and extensions to the robot URDF.
-
-For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
+   AXIS        Value
+Left Horiz.      0
+Left Vert.       1
+Right Horiz.     3
+Right Vert.      4
+Left Trigger     2
+Right Trigger    5
+D-pad Horiz.     6
+D-pad Vert.      7

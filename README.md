@@ -59,10 +59,10 @@ This will now allow you to use the controller to move the husky as well as using
 Controller Information: 
 =============
 Teleop configuration for Logitech F710 Gamepad using the x-pad configuration.
-Left thumb-stick up/down for velocity, left/right for twist
-LB for enable
-RB for enable-turbo
-
+- Left thumb-stick up/down for velocity, left/right for twist
+- LB for enable
+- RB for enable-turbo
+```
         (LB)                                 (RB)
         (LT)                                 (RT)
       _=====_            D(  .)X            _=====_
@@ -100,3 +100,4 @@ Left Trigger     2
 Right Trigger    5
 D-pad Horiz.     6
 D-pad Vert.      7
+```
